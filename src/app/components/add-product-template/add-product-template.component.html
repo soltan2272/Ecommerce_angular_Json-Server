@@ -1,0 +1,28 @@
+<div>
+    <form (ngSubmit)="addProduct()" #frm="ngForm">
+        <div class="mb-3">
+            <label for="prdName" class="form-label"> Product Name</label>
+            <input type="text" [class.is-valid]="prdname.valid" [class.is-invalid]="prdname.invalid &&prdname.touched" #prdname="ngModel" minlength="3" required name="prdName" [(ngModel)]="product.Prod_Name" id="prdName" class="form-control" placeholder="" aria-describedby="helpId">
+            <small id="helpId" [hidden]="prdname.valid|| prdname.untouched" class="text-muted">Name must be at 3 character at least</small>
+          </div>
+          <div class="mb-3">
+            <label for="quan" class="form-label">Quantity</label>
+            <input type="number" required name="qunatity"  [(ngModel)]="product.Quantity" id="quan" class="form-control" placeholder="" aria-describedby="helpId">
+            <small id="helpId" class="text-muted">Help text</small>
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number"  required name="price" id="price"  [(ngModel)]="product.Price" class="form-control" placeholder="" aria-describedby="helpId">
+            <small id="helpId" class="text-muted">Help text</small>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label"></label>
+            <input type="file" class="form-control" [(ngModel)]="product.Img" name="" id="" placeholder="" aria-describedby="fileHelpId">
+            <small id="fileHelpId" class="form-text text-muted">Help text</small>
+          </div>
+          <div class="d-grid gap-2">
+          <button type="submit" [disabled]="frm.invalid" class="btn btn-primary">Submit</button>
+          </div>
+    </form>
+</div>
+<br>

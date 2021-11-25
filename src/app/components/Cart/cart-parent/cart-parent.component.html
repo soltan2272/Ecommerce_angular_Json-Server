@@ -1,0 +1,63 @@
+<h1>Welcome To Our Website</h1>
+<div class="d-grid gap-2">
+    <button type="button" name="" id="" class="btn btn-success" (click)="checkchildlist()">Check Child List</button>
+  </div>
+
+<div class="mb-3">
+  <label for="" class="form-label"> Select Category</label>
+  <select class="form-control" name="cat"  id="cat" [(ngModel)]="selectedcategory">
+    <option value="0">All</option>
+    <option *ngFor="let cat of ProductCategory" [value]="cat.id">{{ cat.Name }}</option>
+   
+  </select>
+  <input type="text"  #selecval>
+</div>
+
+
+<div class="bg-danger">
+    <app-cart-child [SelectedCat]="selectedcategory"  (onTotalPriceChange)="receiveTotalPrice($event)"></app-cart-child>
+</div>
+
+<hr>
+<h3 style="text-align: center;color: darkred;"> Your Cart </h3>
+<div>
+    <h3>Your Order total price:
+        <span class="text-secondary">{{ totalPrice }}</span>
+    </h3>
+</div>
+<table    class="table">
+    <tr  class="table-danger">
+        <th scope="col">
+               #
+        </th>
+        <th scope="col">
+            Name
+        </th>
+        <th scope="col">
+            Quantity
+        </th>
+        <th scope="col">
+            Price
+        </th>
+        <th scope="col">
+            Image
+        </th>
+     
+    </tr>
+    <tr [ngStyle]="{'display': item.itmQuantity==0 ? 'none' : 'content'}" *ngFor="let item of selectedlist;let i=index">
+        <td > {{i+1}}</td> 
+        <td > {{item.itmname}}</td>
+      
+        <td >{{item.itmQuantity}}</td>
+        <td >{{item.totprice}}</td>
+        <td > <img src={{item.itmimg}} width="100" ></td>
+        
+    </tr>
+
+  
+</table>
+
+<div class="d-grid gap-2">
+  <button type="button" name="" id="" (click)="checkOut()" class="btn btn-primary"> CheckOut</button>
+</div>
+<br>

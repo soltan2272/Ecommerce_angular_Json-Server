@@ -1,0 +1,84 @@
+<h1>Welcome To Our Website</h1>
+<h3> Store Name : {{ stoedlist.Name }} </h3>
+
+<!--<img src={{"stoedlist.logo"}} alt="mylogo"> -->
+<img [src]="stoedlist.logo" alt="mylogo">
+<h3>We offer an explicit discount of: {{disoffer}} % </h3>
+<select class="form-select" aria-label="Default select example" [(ngModel)]="selectedValue" (change)="cat_change(selectedValue)"  >  
+    <option value="0">ALL</option>
+<option  *ngFor="let cat of productcat" [ngValue]="cat.id">
+    {{cat.Name}}
+</option>
+</select>
+<table  *ngIf="!isbuy;else other_content"  class="table">
+    <tr  class="table-primary">
+        <th scope="col">
+               #
+        </th>
+        <th scope="col">
+            Name
+        </th>
+        <th scope="col">
+            Quantity
+        </th>
+        <th scope="col">
+            Price
+        </th>
+        <th scope="col">
+            Image
+        </th>
+     
+    </tr>
+    <tr *ngFor="let item of selectedlist" [ngStyle]="{'display': item.Quantity==0 ? 'none' : 'content' ,'background-color': (item.Quantity)==1 ? 'yellow' : '' }">
+        <td > {{item.id}}</td> 
+        <td > {{item.Prod_Name}}</td>
+      
+        <td >   <div [ngSwitch]="item.Quantity">
+            <div *ngSwitchCase="0"> Out of Stock</div>
+            <div *ngSwitchCase="1"> Only one item is left</div>
+            <div *ngSwitchCase="2"> Two items are left</div>
+        </div> {{item.Quantity}}</td>
+        <td > {{item.Price}}</td>
+        <td > <img src={{item.Img}} width="100" ></td>
+        <td > <button class="btn btn-primary bg-primary" (click)="buyprodct(item.id)"> Buy Product</button></td>
+    </tr>
+</table>
+<br>
+<ng-template #other_content><br><h2> “Thanks for purchasing from our Store” {{ClientName}}</h2></ng-template>
+<br>
+
+
+<div class="row">
+    <div  *ngFor="let item of selectedlist" [ngStyle]="{'display': item.Quantity==0 ? 'none' : 'content'}" class="col-sm-4">
+      <div appCard="#8A2BE2"  class="card">
+        <img src="{{item.Img}}" width="40" height="150" class="card-img-top" alt="product">
+        <div class="card-body">
+          <h5 class="card-title">{{item.Prod_Name| uppercase}}</h5>
+         <div class="card-text" [ngSwitch]="item.Quantity">
+            <div *ngSwitchCase="0"> Out of Stock</div>
+            <div *ngSwitchCase="1"> Only one item is left</div>
+            <div *ngSwitchCase="2"> Two items are left</div>
+        </div> {{item.Quantity}}
+          <p class="card-text">{{item.Price|currency:' EGP':'code'}} </p>
+          <button class="btn btn-primary bg-primary" (click)="buyprodct(item.id)"> Add To Cart</button>
+        </div>
+      </div>
+    </div>
+   <br>
+    
+  </div>
+
+ <h2> Birth Dates </h2>
+ <ul>
+     <li *ngFor="let item of birtharr" >{{item | ssnToBirth:'FullDate' }}</li>
+ </ul>
+
+ <!-- <h2>Credit format </h2>
+ <ul>
+     <li *ngFor="let item of creditnumbers" >{{item | creditcard }}</li>
+ </ul>
+  <br> 
+--> <h3> {{mapurl |map}}</h3>
+<input type="text"   appArabiconly>
+
+

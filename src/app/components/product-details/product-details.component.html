@@ -1,0 +1,18 @@
+<br><br> <br><br>
+<div class="d-flex justify-content-center" >
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" [src]="product?.Img" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">Product Name:{{product.id}} - {{product?.Prod_Name}}</h5>
+        <div class="card-text">
+            <h6>Product Price: {{product?.Price}}</h6>
+            <h6>Available Quantity: {{product?.Quantity}}</h6>
+        </div>
+        <hr>
+        <button [disabled]="product.id==1"  (click)="prevPage()" type="button" class="btn btn-primary m-3">Previous</button>
+        <button [disabled]="product.id==0"  type="button" #next (click)="nextPage()" class="btn btn-primary m-3" >Next</button>
+        <hr>
+        <button  type="button" (click)="goBack()" class="btn btn-primary m-3" >Go back</button>
+    </div>
+</div>
+</div>
